@@ -1,0 +1,47 @@
+### 
+@server=http://localhost:3000
+
+POST {{server}}/users
+Content-Type: application/json
+
+{
+    "email": "aaa@aaa.com",
+    "username": "joonmo",
+    "password": "password"
+}
+
+###
+POST {{server}}/users
+Content-Type: application/json
+
+{
+    "email": "aaaaaa.com",
+    "username": 124,
+    "password": "password"
+}
+
+
+###
+PUT {{server}}/users/aaa@aaa.com
+Content-Type: application/json
+
+{
+    "username": "joonmo who have a developer job",
+    "password": "password2"
+}
+
+###
+GET {{server}}/users
+
+
+###
+GET {{server}}/users/aaa@aaa.com
+
+
+### 
+DELETE {{server}}/users
+Content-Type: application/json
+
+{
+    "email": "aaa@aaa.com"
+}
