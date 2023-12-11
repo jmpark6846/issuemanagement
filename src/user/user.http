@@ -5,7 +5,7 @@ POST {{server}}/users
 Content-Type: application/json
 
 {
-    "email": "bbb@aaa.com",
+    "email": "aaa@aaa.com",
     "username": "joonmo",
     "password": "password"
 }

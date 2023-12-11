@@ -45,14 +45,4 @@ export class UserService {
   async deleteUser(email: string) {
     await this.userRepository.delete({ email });
   }
-
-  async validateUser(email: string, password: string): Promise<boolean | null> {
-    const user = await this.getUser(email);
-
-    if (!user) {
-      return false;
-    }
-
-    return await bcrypt.compare(password, user.password);
-  }
 }

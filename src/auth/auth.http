@@ -1,0 +1,15 @@
+@server = http://localhost:3000/auth
+
+###
+POST {{server}}/login
+Content-Type: application/json
+
+{ 
+    "email": "aaa@aaa.com",
+    "password": "password"
+}
+
+
+###
+GET {{server}}/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYUBhYWEuY29tIiwiaWF0IjoxNzAyMjY5NjczLCJleHAiOjE3MDIyNjk3MzN9.7Vh82OQT6Fg9UIUFTl7QJbTOOqK_4ETSQnW4xk3dchE
