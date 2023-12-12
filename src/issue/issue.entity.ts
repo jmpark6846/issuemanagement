@@ -6,6 +6,7 @@ import {
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -81,4 +82,46 @@ export class Comment extends BaseModel {
   author: User;
 
   content: string;
+}
+
+@Entity()
+export class IssueLog {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createdAt: Date;
+
+  @OneToOne(() => Issue)
+  issue: Issue;
+
+  @Column({ nullable: true })
+  @ManyToOne(() => User)
+  user: User;
+}
+
+@Entity()
+export class FileAttachment {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createdAt: Date;
+
+  @Column({ nullable: true })
+  @ManyToOne(() => User)
+  author: User;
+
+  @Column({ nullable: true })
+  @ManyToOne(() => Issue)
+  issue: Issue;
+
+  @Column()
+  fileUrl: string;
 }
