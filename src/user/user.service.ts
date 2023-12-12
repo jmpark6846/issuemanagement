@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto, UpdateUserDto } from './user.dto';
-import { User } from './user.entity';
+import { User, UserProfile } from './user.entity';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -15,7 +15,9 @@ export class UserService {
     const user = new User();
     user.email = createUserDto.email;
     user.password = await bcrypt.hash(createUserDto.password, 10);
-    user.username = createUserDto.username;
+
+    user.profile = new UserProfile();
+    user.profile.username = createUserDto.username;
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...userInfo } = await this.userRepository.save(user);

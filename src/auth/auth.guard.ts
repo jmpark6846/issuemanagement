@@ -13,7 +13,6 @@ export class LocalAuthGuard extends AuthGuard('local') {
     user: any,
     info: any,
     context: ExecutionContext,
-    status,
   ): TUser {
     const request = context.switchToHttp().getRequest();
     const { email, password } = request.body;

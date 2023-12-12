@@ -15,7 +15,7 @@ import { JWTStrategy, LocalStrategy } from './auth.strategy';
         global: true,
         secret: configService.get('JWT_SECRET'),
         signOptions: {
-          expiresIn: '60s',
+          expiresIn: '60m',
         },
       }),
       inject: [ConfigService],

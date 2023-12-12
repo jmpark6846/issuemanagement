@@ -1,0 +1,47 @@
+@auth_url=http://localhost:3000/auth
+@issue_url=http://localhost:3000/issues
+@project_url=http://localhost:3000/projects
+
+###
+POST {{auth_url}}/login
+Content-Type: application/json
+
+{ 
+    "email": "aaa@aaa.com",
+    "password": "password"
+}
+
+
+###
+POST {{project_url}}
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJhYWFAYWFhLmNvbSIsImlhdCI6MTcwMjI3NTQ5NiwiZXhwIjoxNzAyMjc5MDk2fQ.60fzmoUSVOq-C2bAZEgCwhl5G_VDprkXirx3UAokNIo
+
+{
+    "title": "project title1"
+}
+
+// Project
+
+###
+GET {{project_url}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJhYWFAYWFhLmNvbSIsImlhdCI6MTcwMjI3NTQ5NiwiZXhwIjoxNzAyMjc5MDk2fQ.60fzmoUSVOq-C2bAZEgCwhl5G_VDprkXirx3UAokNIo
+
+
+// Issue
+
+###
+POST  {{issue_url}}
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJhYWFAYWFhLmNvbSIsImlhdCI6MTcwMjI3NTQ5NiwiZXhwIjoxNzAyMjc5MDk2fQ.60fzmoUSVOq-C2bAZEgCwhl5G_VDprkXirx3UAokNIo
+
+{
+    "title": "relation 보여주기",
+    "body": "this is body",
+    "project": 1
+}
+
+
+###
+GET {{issue_url}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJhYWFAYWFhLmNvbSIsImlhdCI6MTcwMjI3NTQ5NiwiZXhwIjoxNzAyMjc5MDk2fQ.60fzmoUSVOq-C2bAZEgCwhl5G_VDprkXirx3UAokNIo

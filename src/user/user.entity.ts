@@ -1,11 +1,21 @@
 import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseModel } from 'src/app.entity';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class UserProfile {
   @PrimaryGeneratedColumn()
-  id?: number;
+  id: number;
 
+  @Column()
+  username: string;
+
+  @Column({ nullable: true })
+  picUrl: string;
+}
+
+@Entity()
+export class User extends BaseModel {
   @Column({ unique: true })
   email: string;
 
@@ -13,19 +23,11 @@ export class User {
   @Exclude()
   password: string;
 
-  @Column()
-  username: string;
-
-  @Column({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
-  createdAt: Date;
-
-  @Column({ nullable: true })
-  updatedAt: Date;
+  @OneToOne(() => UserProfile)
+  profile: UserProfile;
 
   constructor(partial?: Partial<User>) {
+    super();
     Object.assign(this, partial);
   }
 }

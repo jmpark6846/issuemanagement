@@ -4,8 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { User } from './user/user.entity';
+import { User, UserProfile } from './user/user.entity';
 import { UserModule } from './user/user.module';
+import { IssueModule } from './issue/issue.module';
+import { Comment, Issue, Label, Project } from './issue/issue.entity';
 const NODE_ENV = process.env.NODE_ENV;
 
 if (NODE_ENV !== 'dev' && NODE_ENV !== 'prod') {
@@ -27,12 +29,13 @@ if (NODE_ENV !== 'dev' && NODE_ENV !== 'prod') {
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [User],
-      synchronize: NODE_ENV === 'dev', // always 'false' on production
+      entities: [UserProfile, User, Issue, Project, Comment, Label],
+      synchronize: true, //NODE_ENV === 'dev', // always 'false' on production
     }),
 
     AuthModule,
     UserModule,
+    IssueModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
